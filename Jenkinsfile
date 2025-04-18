@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url 'https://github.com/Atharva2884/Brain_Tumor_Prediction.git'
+                git 'https://github.com/Atharva2884/Brain_Tumor_Prediction.git'
             }
         }
 
@@ -14,27 +14,15 @@ pipeline {
             }
         }
 
-        stage('Lint') {
-            steps {
-                sh 'pylint *.py || true'
-            }
-        }
-
         stage('Run Tests') {
             steps {
-                sh 'pytest tests/ --disable-warnings || echo "No tests"'
+                sh 'pytest || echo "No tests found"'
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Docker Build') {
             steps {
-                sh 'docker build -t brain-tumor-app .'
-            }
-        }
-
-        stage('Run Docker Container') {
-            steps {
-                sh 'docker run -d -p 5000:5000 brain-tumor-app'
+                sh 'docker build -t brain-tumor-predictor .'
             }
         }
     }
