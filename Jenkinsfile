@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                giturl 'https://github.com/Atharva2884/Brain_Tumor_Prediction.git'
+                git url 'https://github.com/Atharva2884/Brain_Tumor_Prediction.git'
             }
         }
 
