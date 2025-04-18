@@ -4,7 +4,10 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Atharva2884/Brain_Tumor_Prediction.git'
+                checkout([$class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    userRemoteConfigs: [[url: 'https://github.com/Atharva2884/Brain_Tumor_Prediction.git']]
+                ])
             }
         }
 
