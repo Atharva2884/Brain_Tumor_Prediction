@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Atharva2884/Brain_Tumor_Prediction.git'
+                echo 'Using default SCM checkout'
             }
         }
 
@@ -16,7 +16,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                bat 'pytest || echo No tests found'
+                bat 'pytest || echo "No tests found"'
             }
         }
 
